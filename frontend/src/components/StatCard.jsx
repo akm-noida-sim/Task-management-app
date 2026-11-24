@@ -1,0 +1,28 @@
+import { cn } from '../utils/formatters';
+
+const TONES = {
+  brand: 'bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300',
+  emerald: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-300',
+  amber: 'bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300',
+  sky: 'bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-300',
+  rose: 'bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300',
+};
+
+export default function StatCard({ icon: Icon, label, value, hint, tone = 'brand' }) {
+  return (
+    <div className="card p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{label}</p>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{value}</p>
+          {hint && <p className="mt-1 text-xs text-slate-400">{hint}</p>}
+        </div>
+        {Icon && (
+          <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl', TONES[tone])}>
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
